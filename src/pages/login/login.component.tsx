@@ -3,18 +3,20 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
-import "./Login.css";
+import styles from "./Login.module.css";
+import { useLocation } from "wouter";
 
 export default function Login() {
+  const [location, setLocation] = useLocation();
   const [username, setUsername] = useState("");
-  const [activeButton, setActiveButton] = useState(true);
+  const [activeButton, setActiveButton] = useState(false);
 
   useEffect(() => {
     if (username.length) {
-      setActiveButton(false);
+      setActiveButton(true);
       return;
     }
-    setActiveButton(true);
+    setActiveButton(false);
   }, [username]);
 
   return (
@@ -35,8 +37,8 @@ export default function Login() {
           borderRadius: "16px",
         }}
       >
-        <div
-          style={{
+        <Box
+          sx={{
             display: "flex",
             alignItems: "start",
             flexDirection: "column",
@@ -69,9 +71,9 @@ export default function Login() {
           >
             Please enter your username
           </Typography>
-        </div>
-        <div
-          style={{
+        </Box>
+        <Box
+          sx={{
             display: "flex",
             alignItems: "end",
             flexDirection: "column",
@@ -92,13 +94,14 @@ export default function Login() {
             }}
           />
           <Button
+            onClick={() => setLocation("/main/" + username)}
             sx={{ width: "111px", height: "32px", borderRadius: "8px" }}
             variant="contained"
-            disabled={activeButton}
+            disabled={!activeButton}
           >
             Enter
           </Button>
-        </div>
+        </Box>
       </Box>
     </Grid>
   );
