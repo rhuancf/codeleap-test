@@ -1,0 +1,1 @@
+export { default as CreateNewPost } from "./create-new-post.component"

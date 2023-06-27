@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Router, Route } from "wouter";
-import { Login } from './pages';
-import { Main } from './pages';
+import { Login } from '@/pages';
+import { Main } from '@/pages';
 import '@fontsource/roboto/300.css';
 import '@fontsource/roboto/400.css';
 import '@fontsource/roboto/500.css';
