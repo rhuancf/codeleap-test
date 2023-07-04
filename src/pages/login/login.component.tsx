@@ -3,7 +3,7 @@ import Button from "@mui/material/Button";
 import Grid from "@mui/material/Grid";
 import Typography from "@mui/material/Typography";
 import { useEffect, useState } from "react";
-import styles from "./Login.module.css";
+import "./Login.module.css";
 import { useLocation } from "wouter";
 
 export default function Login() {
@@ -23,7 +23,7 @@ export default function Login() {
     <Grid
       container
       component="main"
-      sx={{ display: "flex", justifyContent: "center", alignItems: "center" }}
+      sx={{ display: "flex", justifyContent: "center", alignItems: "center", height: "100vh" }}
     >
       <Box
         sx={{
@@ -35,6 +35,7 @@ export default function Login() {
           height: "205px",
           width: "500px",
           borderRadius: "16px",
+          border: "1px solid #CCC",
         }}
       >
         <Box
@@ -82,6 +83,7 @@ export default function Login() {
         >
           <input
             onChange={(e) => setUsername(e.target.value)}
+            onKeyDown={(e) => {e.key === "Enter" && setLocation("/main/" + username)}}
             placeholder="John Doe"
             style={{
               width: "452px",
