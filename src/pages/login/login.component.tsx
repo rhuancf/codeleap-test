@@ -7,7 +7,7 @@ import "./Login.module.css";
 import { useLocation } from "wouter";
 
 export default function Login() {
-  const [location, setLocation] = useLocation();
+  const [, setLocation] = useLocation();
   const [username, setUsername] = useState("");
   const [activeButton, setActiveButton] = useState(false);
 

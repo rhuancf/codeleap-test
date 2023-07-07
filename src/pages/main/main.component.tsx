@@ -1,23 +1,12 @@
 import { CreateNewPost, PostCard } from "@/components";
-import { PostInfo, PostInfoArray } from "@/types";
+import { PostInfoArray } from "@/types";
 import { Box, Grid, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
-import { useLocation } from "wouter";
 
 export default function Main() {
-  const [location, setLocation] = useLocation();
 
   const [results, setResults] = useState([{}] as PostInfoArray);
   const [resultsCount, setResultsCount] = useState(0);
-
-  const tenis: PostInfo = {
-    id: 1,
-    username: "Teste Username",
-    created_datetime: "2022-01-01",
-    title: "Titulo",
-    content:
-      "Curabitur suscipit suscipit tellus. Phasellus consectetuer vestibulum elit. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas. Maecenas egestas arcu quis ligula mattis placerat. Duis vel nibh at velit scelerisque suscipit. Duis lobortis massa imperdiet quam. Aenean posuere, tortor sed cursus feugiat, nunc augue blandit nunc, eu sollicitudin urna dolor sagittis lacus. Fusce a quam. Nullam vel sem. Nullam cursus lacinia erat.",
-  };
 
   const getPosts = async (limit = 10, offset = 0) => {
     const response = await fetch(

@@ -2,11 +2,9 @@ import Box from "@mui/material/Box";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
 import { useState } from "react";
-import { useLocation } from "wouter";
 import "./create-new-post.module.css";
 
 export default function CreateNewPost() {
-  const [location, setLocation] = useLocation();
   const username = window.location.pathname.replace("/main/", "").replace("%20", " ");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");

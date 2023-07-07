@@ -1,8 +1,6 @@
 import { PostInfo } from "@/types";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
-import { useEffect, useState } from "react";
-import { useLocation } from "wouter";
 
 export default function PostCard(props:{info:PostInfo}) {
 
