@@ -10,7 +10,7 @@ export default function CreateNewPost() {
   const [content, setContent] = useState("");
 
   async function createPost() {
-    return await fetch('https://dev.codeleap.co.uk/careers/', {
+    await fetch('https://dev.codeleap.co.uk/careers/', {
 			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json; charset=utf-8'
@@ -21,6 +21,8 @@ export default function CreateNewPost() {
         content: content
       })
 		})
+
+    window.location.reload()
   }
 
   return (

@@ -5,32 +5,34 @@ import { useEffect, useState } from "react";
 
 export default function Main() {
 
-  const [results, setResults] = useState([{}] as PostInfoArray);
-  const [resultsCount, setResultsCount] = useState(0);
+  const [results, setResults] = useState([] as PostInfoArray);
+  const [postNumber, setPostNumber] = useState(10);
 
-  const getPosts = async (limit = 10, offset = 0) => {
-    const response = await fetch(
-      `https://dev.codeleap.co.uk/careers/?limit=${limit}&offset=${offset}`
-    ).then((res) => res.json());
-
-    if (resultsCount !== response.count) {
-      setResults(response.results);
-      setResultsCount(response.count);
-      console.log(response);
+  const handleScroll = () => {
+    window.onscroll = function() {
+        if ((window.innerHeight + Math.ceil(window.pageYOffset)) >= document.body.offsetHeight) {
+            setPostNumber(postNumber+10);
+        }
     }
   };
 
   useEffect(() => {
+    const getPosts = async () => {
+      const response = await fetch(
+        `https://dev.codeleap.co.uk/careers/?limit=${postNumber}`
+      ).then((res) => res.json());
 
-    // Initial api Call
+      if(postNumber > results.length) {
+        setResults(response.results);
+        console.log(results);
+      }
+      
+    };
     getPosts();
+  }, [postNumber])
 
-    // Interval to check for new posts every 10 seconds
-    const interval = setInterval(getPosts, 10000);
-
-    // Clean up the interval
-    return () => clearInterval(interval);
-    
+  useEffect(() => {
+    handleScroll();
   });
 
   return (
@@ -74,8 +76,7 @@ export default function Main() {
         </Typography>
       </Box>
       <CreateNewPost />
-      {resultsCount &&
-        results.map((post, index) => <PostCard key={index} info={post} />)}
+      {results.map((post, index) => <PostCard key={index} info={post} />)}
     </Grid>
   );
 }
